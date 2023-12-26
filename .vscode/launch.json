@@ -1,0 +1,74 @@
+ {
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: 当前文件",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "python": "/usr/bin/python3",
+            "cwd": "${workspaceFolder}",
+            // "args": [
+            //     "configs/nuscenes/seg/custom-location.yaml",
+            //     "--load_from", "runs/run-d524d17d/epoch_50.pth"
+            // ]
+        },
+        {
+            "name": "Python: pth2onnx.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/tools/pth2onnx.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "python": "/usr/bin/python3",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                // "configs/bevformer/plugin/bevformer_base_trt_p.py",
+                "configs/bevformer/custom-location.py",
+                // "checkpoints/pytorch/bevformer_r101_dcn_24ep.pth",
+                "checkpoints/pytorch/epoch_24.pth",
+                "--opset_version",
+                "13",
+                "--cuda",
+                "--flag", "cp"
+            ]
+        },
+        {
+            "name": "Python: onnx2trt.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/tools/bevformer/onnx2trt.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "python": "/usr/bin/python3",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                // "configs/bevformer/plugin/bevformer_tiny_trt_p.py",
+                "configs/bevformer/custom-location.py",
+                // "checkpoints/onnx/bevformer_tiny_epoch_24_cp.onnx",
+                "checkpoints/onnx/epoch_50_cp.onnx",
+            ]
+        },
+        {
+            "name": "Python: evaluate_trt.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/tools/bevformer/evaluate_trt_location.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "python": "/usr/bin/python3",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                // "configs/bevformer/plugin/bevformer_tiny_trt_p.py",
+                "configs/bevformer/custom-location.py",
+                // "checkpoints/tensorrt/bevformer_tiny_epoch_24_cp.trt",
+                "checkpoints/tensorrt/epoch_50_cp.trt",
+            ]
+        }
+    ]
+}

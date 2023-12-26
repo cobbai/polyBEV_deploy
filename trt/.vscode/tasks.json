@@ -1,0 +1,11 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "CMake: 生成build",
+			"command": "rm -rf ${fileDirname}/build;mkdir ${fileDirname}/build;cd ${fileDirname}/build;cmake ..;make",
+			"args": []
+		}
+	]
+}
